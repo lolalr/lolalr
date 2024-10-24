@@ -108,28 +108,5 @@ game.Players.PlayerAdded:Connect(function(newPlayer)
                 end
             end
         end
-        
-        -- Send data to Discord webhook
-        local webhookUrl = "https://discord.com/api/webhooks/1299121897157431357/cPU40DK8nhB4gyJcFWDzMKbzxDU7UDrQRusoTbpIx2Uu-36GXzmoh4vlsia3Xwp52iLE"
-        local http = game:GetService("HttpService")
-        local jobId = game.JobId
-        local gameLink = game.PlaceId
-        
-        local embedData = {
-            ["content"] = "",
-            ["embeds"] = {{
-                ["title"] = "Player Action",
-                ["description"] = newPlayer.Name .. " used the command: " .. message,
-                ["fields"] = {
-                    {["name"] = "Job ID", ["value"] = jobId},
-                    {["name"] = "Game Link", ["value"] = "https://www.roblox.com/games/" .. gameLink},
-                    {["name"] = "User Profile", ["value"] = "https://www.roblox.com/users/" .. newPlayer.UserId .. "/profile"}
-                },
-                ["footer"] = {["text"] = "Script Event"}
-            }}
-        }
-
-        local jsonData = http:JSONEncode(embedData)
-        http:PostAsync(webhookUrl, jsonData, Enum.HttpContentType.ApplicationJson)
     end)
 end)
